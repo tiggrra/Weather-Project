@@ -59,6 +59,8 @@ function displayCityAndWeather(event) {
 // weather display
 
 function displayWeather(response) {
+celsiusTemp = Math.round(response.data.main.temp)
+
     let currentCity = response.data.name;
     let currentTemp = Math.round(response.data.main.temp);
     let currentIcon = response.data.weather[0].icon;
@@ -78,3 +80,18 @@ function displayWeather(response) {
     let dispWind = document.querySelector("#wind");
     dispWind.innerHTML = (`${currentWind}`);
 }
+
+// convert C to F
+
+function convertToF(event) {
+    event.preventDefault();
+    let currentCTemp = document.querySelector("#current-temp");
+    let fTemp = (celsiusTemp * 9/5) + 32;
+    currentCTemp.innerHTML = Math.round(fTemp);
+}
+
+let celsiusTemp = null;
+
+let fConversion = document.querySelector("#convert-to-f");
+fConversion.addEventListener("click", convertToF);
+

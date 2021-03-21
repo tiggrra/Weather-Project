@@ -15,6 +15,27 @@
   </head>
   <body>
     <div class="container">
+      <div class="search-header">
+        <!-- Search form -->
+        <form class="search-input">
+          <input
+            type="search"
+            id="search-city"
+            placeholder="Enter a city..."
+            size="48"
+          />
+          <input type="submit" id="submit-city" value="Search" />
+        </form>
+        <!-- Current location button -->
+        <button
+          type="button"
+          id="current-location-button"
+          class="btn btn-secondary btn-sm"
+        >
+          Current location
+        </button>
+      </div>
+      <!-- Weather today -->
       <div class="weather-today">
         <h1>city</h1>
         <hr />

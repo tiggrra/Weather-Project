@@ -1,0 +1,105 @@
+body {
+  color: #303232;
+  font-family: "Nunito Sans", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  background: #9ab7b8;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.search-header,
+.weather-today {
+  background: #d9e4e7;
+  padding: 10px 20px;
+  border: 1px solid #ebebf1;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.search-input {
+  display: inline;
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+.btn-secondary {
+  font-size: 13px;
+  padding: 1px 6px;
+  border: 0.5px solid #919ca4;
+  background-color: rgb(239, 239, 239);
+  color: #303232;
+  border-radius: 5px;
+}
+
+input {
+  border: 0.5px solid #919ca4;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+::placeholder {
+  color: #919ca4;
+  font-style: italic;
+  font-size: 13px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+hr {
+  color: #919ca4;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+.current-temp {
+  font-size: 50px;
+  line-height: 1;
+}
+
+.measure-unit {
+  font-size: 18px;
+  vertical-align: top;
+}
+
+.measure-unit a {
+  color: #303232;
+  text-decoration: none;
+}
+
+.measure-unit a:hover {
+  color: #919ca4;
+}
+
+.weather-parameters p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.footer {
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.footer a {
+  color: #919ca4;
+}

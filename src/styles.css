@@ -88,6 +88,10 @@ hr {
   color: #919ca4;
 }
 
+#weatherIcon {
+  vertical-align: top;
+}
+
 .weather-parameters p {
   margin: 0;
   line-height: 1.5;

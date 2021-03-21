@@ -10,6 +10,15 @@ let weekday = weekdays[now.getDay()];
 let h2 = document.querySelector("h2");
 h2.innerHTML = (`${weekday}, ${hour}:${minute}`);
 
+// default location upon page load
+
+    let city = "Vienna";
+    let apiKey = "01bc9da346c1591ec92736f4f11269b6";
+    let apiEndpointCurrent = "https://api.openweathermap.org/data/2.5/weather";
+    let units = "metric";
+    let apiUrlCurrent = `${apiEndpointCurrent}?q=${city}&units=${units}&appid=${apiKey}`;
+    axios.get(apiUrlCurrent).then(displayWeather);
+
 // current location button response
 
 let getLocationButton = document.querySelector("#current-location-button");

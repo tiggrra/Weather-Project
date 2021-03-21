@@ -63,7 +63,7 @@ function displayWeather(response) {
     let dispIcon = document.getElementById("weatherIcon");
     dispIcon.src = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
     let dispCondition = document.querySelector("#condition");
-    dispCondition.innerHTML = (`${currentConsition}`)
+    dispCondition.innerHTML = (`${currentCondition}`)
     let dispHumidity = document.querySelector("#humidity");
     dispHumidity.innerHTML = (`${currentHumidity}`);
     let dispWind = document.querySelector("#wind");

@@ -21,6 +21,7 @@
       src="https://kit.fontawesome.com/c2919a5970.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -52,7 +53,7 @@
         <div class="row">
           <div class="col-sm-8">
             <p>
-              <span class="current-temp">1</span>
+              <span id="current-temp">1</span>
               <span class="measure-unit"
                 ><a id="celsius-tag" href="#">°C</a> |
                 <a id="fahrenheit-tag" href="#">°F</a></span
@@ -62,9 +63,9 @@
           </div>
           <div class="col-sm-4">
             <div class="weather-parameters">
-              <p>Condition: Clear sky</p>
-              <p>Humidity: 64%</p>
-              <p>Wind: 3 km/h</p>
+              <p id="condition">Condition: Clear sky</p>
+              <p id="humidity">Humidity: 64%</p>
+              <p id="wind">Wind: 3 km/h</p>
             </div>
           </div>
         </div>

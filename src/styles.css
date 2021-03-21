@@ -69,7 +69,7 @@ hr {
   margin-top: 20px;
 }
 
-.current-temp {
+#current-temp {
   font-size: 50px;
   line-height: 1;
 }

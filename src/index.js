@@ -115,6 +115,19 @@ celsiusWind = Math.round(response.data.wind.speed*3.6);
     let dispIcon = document.getElementById("weather-icon");
     dispIcon.removeAttribute("class");
     dispIcon.classList.add("fas", `${weatherIcon}`);
+
+    // precipitation
+    let dispPrecipitation = document.querySelector("#precipitation");
+    if (currentCondition === "Rain") {
+        let currentRain = Math.round(response.data.rain["1h"]).toFixed(1);
+        dispPrecipitation.innerHTML = (`${currentRain}`);
+        console.log(currentRain);
+         } else if (currentCondition === "Snow") {
+        let currentSnow = Math.round(response.data.snow["1h"]).toFixed(1);
+        dispPrecipitation.innerHTML = (`${currentSnow}`);
+    } else {
+        dispPrecipitation.innerHTML = "0";
+    }
 }
 
 // current location button response

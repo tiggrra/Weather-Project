@@ -51,24 +51,21 @@
         <hr />
         <h2></h2>
         <div class="row">
-          <div class="col-sm-8">
-            <p>
-              <span id="current-temp"></span>
-              <span class="measure-unit"
-                ><a id="convert-to-c" class="active" href="#">°C</a>
-                |
-                <a id="convert-to-f" href="#">°F</a></span
-              >
-              <img id="weatherIcon" />
-            </p>
+          <div class="col-sm-2"><span id="current-temp"></span></div>
+          <div class="col-sm-2">
+            <span class="measure-unit"
+              ><a id="convert-to-c" class="active" href="#">°C</a>
+              |
+              <a id="convert-to-f" href="#">°F</a></span
+            >
           </div>
+          <div class="col-sm-4"><img id="weatherIcon" /></div>
+
           <div class="col-sm-4">
             <div class="weather-parameters">
               <p>Condition: <span id="condition">Clear sky</span></p>
               <p>Humidity: <span id="humidity">64</span>%</p>
-              <p>
-                Wind: <span id="wind">3</span> <span id="wind-tag">km/h</span>
-              </p>
+              <p>Wind: <span id="wind">3</span> <span id="wind-tag"></span></p>
             </div>
           </div>
         </div>

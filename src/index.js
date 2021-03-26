@@ -41,6 +41,11 @@ celsiusWind = Math.round(response.data.wind.speed*3.6);
     dispHumidity.innerHTML = (`${currentHumidity}`);
     let dispWind = document.querySelector("#wind");
     dispWind.innerHTML = (`${celsiusWind}`);
+    let dispWindTag = document.querySelector("#wind-tag");
+    dispWindTag.innerHTML = "km/h"
+
+    fConversion.classList.remove("active");
+    cConversion.classList.add("active");
 }
 
 // current location button response

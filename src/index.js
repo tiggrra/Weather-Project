@@ -92,9 +92,22 @@ function convertToF(event) {
     currentWindTag.innerHTML = "mph";
 }
 
+function convertToC(event) {
+    event.preventDefault();
+    let currentCTemp = document.querySelector("#current-temp");
+    let currentWind = document.querySelector("#wind");
+    let currentWindTag = document.querySelector("#wind-tag");
+    currentCTemp.innerHTML = celsiusTemp;
+    currentWind.innerHTML = celsiusWind;
+    currentWindTag.innerHTML = "km/h";
+}
+
 let celsiusTemp = null;
 let celsiusWind = null;
 
 let fConversion = document.querySelector("#convert-to-f");
 fConversion.addEventListener("click", convertToF);
+
+let cConversion = document.querySelector("#convert-to-c");
+cConversion.addEventListener("click", convertToC);
 

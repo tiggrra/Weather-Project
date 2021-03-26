@@ -12,54 +12,56 @@ h2.innerHTML = (`${weekday}, ${hour}:${minute}`);
 
 // default location upon page load
 
-    let city = "Dehli";
-    let apiKey = "01bc9da346c1591ec92736f4f11269b6";
-    let apiEndpointCurrent = "https://api.openweathermap.org/data/2.5/weather";
-    let units = "metric";
-    let apiUrlCurrent = `${apiEndpointCurrent}?q=${city}&units=${units}&appid=${apiKey}`;
-    axios.get(apiUrlCurrent).then(displayWeather);
+let city = "Dehli";
+let apiKey = "01bc9da346c1591ec92736f4f11269b6";
+let apiEndpointCurrent = "https://api.openweathermap.org/data/2.5/weather";
+let units = "metric";
+let apiUrlCurrent = `${apiEndpointCurrent}?q=${city}&units=${units}&appid=${apiKey}`;
+axios.get(apiUrlCurrent).then(displayWeather);
 
 // WEATHER DISPLAY
 
 function displayWeather(response) {
-celsiusTemp = Math.round(response.data.main.temp);
-celsiusWind = Math.round(response.data.wind.speed*3.6);
+    celsiusTemp = Math.round(response.data.main.temp);
+    celsiusWind = Math.round(response.data.wind.speed*3.6);
 
-//local time calculation
-let localTime = document.querySelector("#local-time");
-let currentTimeZone = (now.getTimezoneOffset());
-let localTimeZone = response.data.timezone/60;
-let localHour = parseInt(hour)*60 + currentTimeZone + localTimeZone;
-console.log(localHour/60);
-let wholeHourCheck = localHour/60 - Math.floor(localHour/60);
-console.log(wholeHourCheck);
-let localMinutes = now.getMinutes() + (localHour/60 - Math.floor(localHour/60))*60;
-console.log(localMinutes);
+    // local time calculation
+    let localTime = document.querySelector("#local-time");
+    let currentTimeZone = (now.getTimezoneOffset());
+    let localTimeZone = response.data.timezone/60;
+    let localHour = parseInt(hour)*60 + currentTimeZone + localTimeZone;
+    console.log(localHour/60);
+    let wholeHourCheck = localHour/60 - Math.floor(localHour/60);
+    console.log(wholeHourCheck);
+    let localMinutes = now.getMinutes() + (localHour/60 - Math.floor(localHour/60))*60;
+    console.log(localMinutes);
 
-if (wholeHourCheck === 0) {  
-    if(localHour/60>=24) {
-        let localHourBack = parseInt(hour) + (currentTimeZone + localTimeZone)/60 - 24;
-        localTime.innerHTML = (`${localHourBack}:${minute}`);
-        } else if (localHour/60<0) {
-            let localHourForward = parseInt(hour) + (currentTimeZone + localTimeZone)/60 + 24;
-            localTime.innerHTML = (`${localHourForward}:${minute}`);
+        if (wholeHourCheck === 0) {  
+            if(localHour/60>=24) {
+            let localHourBack = parseInt(hour) + (currentTimeZone + localTimeZone)/60 - 24;
+            localTime.innerHTML = (`${localHourBack}:${minute}`);
+                } else if (localHour/60<0) {
+                let localHourForward = parseInt(hour) + (currentTimeZone + localTimeZone)/60 + 24;
+                localTime.innerHTML = (`${localHourForward}:${minute}`);
+                    } else {
+                    localTime.innerHTML = (`${localHour/60}:${minute}`);
+                }
             } else {
-                localTime.innerHTML = (`${localHour/60}:${minute}`);
-    }} else {
-        if (localMinutes>59) {
-            let localMinutesForward = localMinutes-60;
-            console.log(localMinutesForward);
-            let localHourForward = Math.floor(localHour/60)-23;
-            localTime.innerHTML = (`${localHourForward}:${localMinutesForward}`);
-                } else if (localMinutes<0) {
+                if (localMinutes>59) {
+                let localMinutesForward = localMinutes-60;
+                console.log(localMinutesForward);
+                let localHourForward = Math.floor(localHour/60)-23;
+                localTime.innerHTML = (`${localHourForward}:${localMinutesForward}`);
+                    } else if (localMinutes<0) {
                     let localMinutesBack = localMinutes+60;
                     let localHourBack = Math.floor(localHour/60)+23;
                     localTime.innerHTML = (`${localHourBack}:${localMinutesBack}`);
                         } else {
-                            localTime.innerHTML = (`${Math.floor(localHour/60)}:${localMinutes}`);
-    }
-}
+                        localTime.innerHTML = (`${Math.floor(localHour/60)}:${localMinutes}`);
+                            }
+            }
 
+    // main data
     let currentCity = response.data.name;
     let currentCountry = response.data.sys.country;
     let currentCondition = response.data.weather[0].main;
@@ -153,24 +155,25 @@ if (wholeHourCheck === 0) {
     if (now > sunrise && now < sunset) {
     let weatherIcon = weatherIcons[`${currentCondition}`].day;
     dispIcon.classList.add("fas", `${weatherIcon}`);
-    } else {
+        } else {
         let weatherIcon = weatherIcons[`${currentCondition}`].night;
-    dispIcon.classList.add("fas", `${weatherIcon}`);
-    }
+        dispIcon.classList.add("fas", `${weatherIcon}`);
+            }
 
     // precipitation
     let dispPrecipitation = document.querySelector("#precipitation");
+        
     if (currentCondition === "Rain") {
         let currentRain = Math.round(response.data.rain["1h"]).toFixed(1);
         dispPrecipitation.innerHTML = (`${currentRain}`);
         console.log(currentRain);
-         } else if (currentCondition === "Snow") {
-        let currentSnow = Math.round(response.data.snow["1h"]).toFixed(1);
-        dispPrecipitation.innerHTML = (`${currentSnow}`);
-    } else {
-        dispPrecipitation.innerHTML = "0";
+            } else if (currentCondition === "Snow") {
+                let currentSnow = Math.round(response.data.snow["1h"]).toFixed(1);
+                dispPrecipitation.innerHTML = (`${currentSnow}`);
+                    } else {
+                        dispPrecipitation.innerHTML = "0";
+        }
     }
-}
 
 // current location button response
 
@@ -199,7 +202,7 @@ searchCity.addEventListener("submit", displayCityAndWeather);
 
 function displayCityAndWeather(event) {
     event.preventDefault();
-    
+        
     let city = document.querySelector("#search-city").value;
     let apiKey = "01bc9da346c1591ec92736f4f11269b6";
     let apiEndpointCurrent = "https://api.openweathermap.org/data/2.5/weather";
@@ -209,13 +212,13 @@ function displayCityAndWeather(event) {
         if (error.response) {
             let message = document.querySelector("#message");
             message.innerHTML = `Sorry, this location couldn't be found! Please try another location in your area.`;
-    } else {
-    displayWeather();
-    }; 
-      })
-      message.innerHTML = ``; 
-      axios.get(apiUrlCurrent).then(displayWeather);
-    }
+        } else {
+        displayWeather();
+        }; 
+        })
+        message.innerHTML = ``; 
+        axios.get(apiUrlCurrent).then(displayWeather);
+        }
 
 // convert C to F
 

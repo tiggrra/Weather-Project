@@ -32,8 +32,6 @@ function getNavigation(event) {
 function showPosition(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-
-    let city = document.querySelector("#search-city").value;
     let apiKey = "01bc9da346c1591ec92736f4f11269b6";
     let apiEndpointCurrent = "https://api.openweathermap.org/data/2.5/weather";
     let units = "metric";
@@ -61,7 +59,6 @@ function displayCityAndWeather(event) {
 function displayWeather(response) {
 celsiusTemp = Math.round(response.data.main.temp);
 celsiusWind = Math.round(response.data.wind.speed*3.6);
-console.log(celsiusWind);
 
     let currentCity = response.data.name;
     let currentIcon = response.data.weather[0].icon;

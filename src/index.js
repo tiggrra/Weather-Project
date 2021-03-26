@@ -19,6 +19,30 @@ h2.innerHTML = (`${weekday}, ${hour}:${minute}`);
     let apiUrlCurrent = `${apiEndpointCurrent}?q=${city}&units=${units}&appid=${apiKey}`;
     axios.get(apiUrlCurrent).then(displayWeather);
 
+// weather display
+
+function displayWeather(response) {
+celsiusTemp = Math.round(response.data.main.temp);
+celsiusWind = Math.round(response.data.wind.speed*3.6);
+
+    let currentCity = response.data.name;
+    let currentIcon = response.data.weather[0].icon;
+    let currentCondition = response.data.weather[0].main;
+    let currentHumidity = response.data.main.humidity;
+    let h1 = document.querySelector("h1");
+    h1.innerHTML = (`${currentCity}`);
+    let dispTemp = document.querySelector("#current-temp");
+    dispTemp.innerHTML = (`${celsiusTemp}`);
+    let dispIcon = document.getElementById("weatherIcon");
+    dispIcon.src = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
+    let dispCondition = document.querySelector("#condition");
+    dispCondition.innerHTML = (`${currentCondition}`)
+    let dispHumidity = document.querySelector("#humidity");
+    dispHumidity.innerHTML = (`${currentHumidity}`);
+    let dispWind = document.querySelector("#wind");
+    dispWind.innerHTML = (`${celsiusWind}`);
+}
+
 // current location button response
 
 let getLocationButton = document.querySelector("#current-location-button");
@@ -52,30 +76,6 @@ function displayCityAndWeather(event) {
     let units = "metric";
     let apiUrlCurrent = `${apiEndpointCurrent}?q=${city}&units=${units}&appid=${apiKey}`;
     axios.get(apiUrlCurrent).then(displayWeather);
-}
-
-// weather display
-
-function displayWeather(response) {
-celsiusTemp = Math.round(response.data.main.temp);
-celsiusWind = Math.round(response.data.wind.speed*3.6);
-
-    let currentCity = response.data.name;
-    let currentIcon = response.data.weather[0].icon;
-    let currentCondition = response.data.weather[0].main;
-    let currentHumidity = response.data.main.humidity;
-    let h1 = document.querySelector("h1");
-    h1.innerHTML = (`${currentCity}`);
-    let dispTemp = document.querySelector("#current-temp");
-    dispTemp.innerHTML = (`${celsiusTemp}`);
-    let dispIcon = document.getElementById("weatherIcon");
-    dispIcon.src = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
-    let dispCondition = document.querySelector("#condition");
-    dispCondition.innerHTML = (`${currentCondition}`)
-    let dispHumidity = document.querySelector("#humidity");
-    dispHumidity.innerHTML = (`${currentHumidity}`);
-    let dispWind = document.querySelector("#wind");
-    dispWind.innerHTML = (`${celsiusWind}`);
 }
 
 // convert C to F

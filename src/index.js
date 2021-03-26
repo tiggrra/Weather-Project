@@ -28,7 +28,6 @@ celsiusWind = Math.round(response.data.wind.speed*3.6);
     let currentCity = response.data.name;
     let currentCountry = response.data.sys.country;
     let currentCondition = response.data.weather[0].main;
-    console.log(currentCondition);
     let currentHumidity = response.data.main.humidity;
     let h1 = document.querySelector("h1");
     h1.innerHTML = (`${currentCity}, ${currentCountry}`);
@@ -111,10 +110,18 @@ celsiusWind = Math.round(response.data.wind.speed*3.6);
     }
 
     // change icon
-    let weatherIcon = weatherIcons[`${currentCondition}`].day;
+    let sunrise = new Date(response.data.sys.sunrise*1000);
+    let sunset = new Date(response.data.sys.sunset*1000);
     let dispIcon = document.getElementById("weather-icon");
     dispIcon.removeAttribute("class");
+
+    if (now > sunrise && now < sunset) {
+    let weatherIcon = weatherIcons[`${currentCondition}`].day;
     dispIcon.classList.add("fas", `${weatherIcon}`);
+    } else {
+        let weatherIcon = weatherIcons[`${currentCondition}`].night;
+    dispIcon.classList.add("fas", `${weatherIcon}`);
+    }
 
     // precipitation
     let dispPrecipitation = document.querySelector("#precipitation");

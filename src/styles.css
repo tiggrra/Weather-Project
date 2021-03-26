@@ -81,13 +81,17 @@ hr {
   vertical-align: top;
 }
 
-.celsius-tag,
+.celsius-tag a {
+  color: #303232;
+  text-decoration: none;
+  cursor: default;
+}
+
 .fahrenheit-tag a {
   color: #303232;
   text-decoration: none;
 }
 
-.celsius-tag,
 .fahrenheit-tag a:hover {
   color: #919ca4;
 }

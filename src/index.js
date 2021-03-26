@@ -26,15 +26,13 @@ celsiusTemp = Math.round(response.data.main.temp);
 celsiusWind = Math.round(response.data.wind.speed*3.6);
 
     let currentCity = response.data.name;
-    let currentIcon = response.data.weather[0].icon;
     let currentCondition = response.data.weather[0].main;
+    console.log(currentCondition);
     let currentHumidity = response.data.main.humidity;
     let h1 = document.querySelector("h1");
     h1.innerHTML = (`${currentCity}`);
     let dispTemp = document.querySelector("#current-temp");
     dispTemp.innerHTML = (`${celsiusTemp}`);
-    let dispIcon = document.getElementById("weatherIcon");
-    dispIcon.src = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
     let dispCondition = document.querySelector("#condition");
     dispCondition.innerHTML = (`${currentCondition}`)
     let dispHumidity = document.querySelector("#humidity");
@@ -46,6 +44,77 @@ celsiusWind = Math.round(response.data.wind.speed*3.6);
 
     fConversion.classList.remove("active");
     cConversion.classList.add("active");
+ 
+    //define icons
+
+let weatherIcons = {
+        "Clear": {
+            "day": "fa-sun",
+            "night": "fa-moon"
+        },
+        "Clouds": {
+            "day": "fa-cloud",
+            "night": "fa-cloud"
+        },
+        "Rain": {
+            "day": "fa-cloud-showers-heavy",
+            "night": "fa-cloud-showers-heavy"  
+        },
+        "Drizzle": {
+            "day": "fa-cloud-rain",
+            "night": "fa-cloud-rain"
+        },
+        "Thunderstorm": {
+            "day": "fa-bolt",
+            "night": "fa-bolt"  
+        },
+        "Snow": {
+            "day": "fa-snowflake",
+            "night": "fa-snowflake"           
+        },
+        "Haze": {
+            "day": "fa-smog",
+            "night": "fa-smog" 
+        },
+        "Mist": {
+            "day": "fa-smog",
+            "night": "fa-smog" 
+        },
+        "Smoke": {
+            "day": "fa-smog",
+            "night": "fa-smog" 
+        },
+        "Dust": {
+            "day": "fa-smog",
+            "night": "fa-smog" 
+        },
+        "Fog": {
+            "day": "fa-smog",
+            "night": "fa-smog" 
+        },
+        "Sand": {
+            "day": "fa-smog",
+            "night": "fa-smog" 
+        },
+        "Ash": {
+            "day": "fa-smog",
+            "night": "fa-smog" 
+        },
+        "Squall": {
+            "day": "fa-wind",
+            "night": "fa-wind" 
+        },
+        "Tornado": {
+            "day": "fa-exclamation-triangle",
+            "night": "fa-exclamation-triangle" 
+        }
+    }
+
+    
+    let weatherIcon = weatherIcons[`${currentCondition}`].day;
+    let dispIcon = document.getElementById("weather-icon");
+    dispIcon.removeAttribute("class");
+    dispIcon.classList.add("fas", `${weatherIcon}`);
 }
 
 // current location button response

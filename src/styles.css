@@ -100,8 +100,8 @@ a.active:hover {
   cursor: default;
 }
 
-#weatherIcon {
-  vertical-align: top;
+.fas {
+  font-size: 42px;
 }
 
 .weather-parameters p {

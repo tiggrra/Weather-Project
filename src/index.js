@@ -59,18 +59,18 @@ function displayCityAndWeather(event) {
 // weather display
 
 function displayWeather(response) {
-celsiusTemp = Math.round(response.data.main.temp)
+celsiusTemp = Math.round(response.data.main.temp);
+celsiusWind = Math.round(response.data.wind.speed*3.6);
+console.log(celsiusWind);
 
     let currentCity = response.data.name;
-    let currentTemp = Math.round(response.data.main.temp);
     let currentIcon = response.data.weather[0].icon;
     let currentCondition = response.data.weather[0].main;
     let currentHumidity = response.data.main.humidity;
-    let currentWind = Math.round(response.data.wind.speed);
     let h1 = document.querySelector("h1");
     h1.innerHTML = (`${currentCity}`);
     let dispTemp = document.querySelector("#current-temp");
-    dispTemp.innerHTML = (`${currentTemp}`);
+    dispTemp.innerHTML = (`${celsiusTemp}`);
     let dispIcon = document.getElementById("weatherIcon");
     dispIcon.src = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
     let dispCondition = document.querySelector("#condition");
@@ -78,7 +78,7 @@ celsiusTemp = Math.round(response.data.main.temp)
     let dispHumidity = document.querySelector("#humidity");
     dispHumidity.innerHTML = (`${currentHumidity}`);
     let dispWind = document.querySelector("#wind");
-    dispWind.innerHTML = (`${currentWind}`);
+    dispWind.innerHTML = (`${celsiusWind}`);
 }
 
 // convert C to F
@@ -86,11 +86,18 @@ celsiusTemp = Math.round(response.data.main.temp)
 function convertToF(event) {
     event.preventDefault();
     let currentCTemp = document.querySelector("#current-temp");
+    let currentWind = document.querySelector("#wind");
+    let currentWindTag = document.querySelector("#wind-tag");
     let fTemp = (celsiusTemp * 9/5) + 32;
+    let fWind = (celsiusWind / 1.609);
     currentCTemp.innerHTML = Math.round(fTemp);
+    currentWind.innerHTML = Math.round(fWind);
+    currentWindTag.innerHTML = "mph";
+
 }
 
 let celsiusTemp = null;
+let celsiusWind = null;
 
 let fConversion = document.querySelector("#convert-to-f");
 fConversion.addEventListener("click", convertToF);

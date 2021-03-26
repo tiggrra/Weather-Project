@@ -90,7 +90,6 @@ function convertToF(event) {
     currentCTemp.innerHTML = Math.round(fTemp);
     currentWind.innerHTML = Math.round(fWind);
     currentWindTag.innerHTML = "mph";
-
 }
 
 let celsiusTemp = null;

@@ -66,6 +66,14 @@ h2 {
   font-weight: normal;
 }
 
+h3 {
+  font-size: 12px;
+  font-weight: normal;
+  font-style: italic;
+  color: #919ca4;
+  margin-top: 5px;
+}
+
 hr {
   color: #919ca4;
   margin: 10px 0;

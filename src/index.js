@@ -19,11 +19,25 @@ h2.innerHTML = (`${weekday}, ${hour}:${minute}`);
     let apiUrlCurrent = `${apiEndpointCurrent}?q=${city}&units=${units}&appid=${apiKey}`;
     axios.get(apiUrlCurrent).then(displayWeather);
 
-// weather display
+// WEATHER DISPLAY
 
 function displayWeather(response) {
 celsiusTemp = Math.round(response.data.main.temp);
 celsiusWind = Math.round(response.data.wind.speed*3.6);
+
+let currentTimeZone = (now.getTimezoneOffset()/60);
+let localTimeZone = response.data.timezone/3600;
+let localHour = parseInt(hour) + currentTimeZone + localTimeZone;
+let localTime = document.querySelector("#local-time");
+if(localHour>=24) {
+    let localHourBack = parseInt(hour) + currentTimeZone + localTimeZone - 24;
+    localTime.innerHTML = (`${localHourBack}:${minute}`);
+} else if (localHour<0) {
+    let localHourForward = parseInt(hour) + currentTimeZone + localTimeZone + 24;
+    localTime.innerHTML = (`${localHourForward}:${minute}`);
+} else {
+    localTime.innerHTML = (`${localHour}:${minute}`);
+}
 
     let currentCity = response.data.name;
     let currentCountry = response.data.sys.country;

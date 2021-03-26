@@ -49,6 +49,12 @@ input {
   font-size: 14px;
 }
 
+#message {
+  font-size: 14px;
+  color: red;
+  font-style: italic;
+}
+
 h1 {
   font-size: 26px;
   font-weight: bold;

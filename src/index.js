@@ -26,11 +26,12 @@ celsiusTemp = Math.round(response.data.main.temp);
 celsiusWind = Math.round(response.data.wind.speed*3.6);
 
     let currentCity = response.data.name;
+    let currentCountry = response.data.sys.country;
     let currentCondition = response.data.weather[0].main;
     console.log(currentCondition);
     let currentHumidity = response.data.main.humidity;
     let h1 = document.querySelector("h1");
-    h1.innerHTML = (`${currentCity}`);
+    h1.innerHTML = (`${currentCity}, ${currentCountry}`);
     let dispTemp = document.querySelector("#current-temp");
     dispTemp.innerHTML = (`${celsiusTemp}`);
     let dispCondition = document.querySelector("#condition");
@@ -46,8 +47,7 @@ celsiusWind = Math.round(response.data.wind.speed*3.6);
     cConversion.classList.add("active");
  
     //define icons
-
-let weatherIcons = {
+    let weatherIcons = {
         "Clear": {
             "day": "fa-sun",
             "night": "fa-moon"
@@ -110,7 +110,7 @@ let weatherIcons = {
         }
     }
 
-    
+    // change icon
     let weatherIcon = weatherIcons[`${currentCondition}`].day;
     let dispIcon = document.getElementById("weather-icon");
     dispIcon.removeAttribute("class");
@@ -144,13 +144,23 @@ searchCity.addEventListener("submit", displayCityAndWeather);
 
 function displayCityAndWeather(event) {
     event.preventDefault();
+    
     let city = document.querySelector("#search-city").value;
     let apiKey = "01bc9da346c1591ec92736f4f11269b6";
     let apiEndpointCurrent = "https://api.openweathermap.org/data/2.5/weather";
     let units = "metric";
     let apiUrlCurrent = `${apiEndpointCurrent}?q=${city}&units=${units}&appid=${apiKey}`;
-    axios.get(apiUrlCurrent).then(displayWeather);
-}
+    axios.get(apiUrlCurrent).catch(function(error) {
+        if (error.response) {
+            let message = document.querySelector("#message");
+            message.innerHTML = `Sorry, this location couldn't be found! Please try another location in your area.`;
+    } else {
+    displayWeather();
+    }; 
+      })
+      message.innerHTML = ``; 
+      axios.get(apiUrlCurrent).then(displayWeather);
+    }
 
 // convert C to F
 
@@ -190,4 +200,3 @@ fConversion.addEventListener("click", convertToF);
 
 let cConversion = document.querySelector("#convert-to-c");
 cConversion.addEventListener("click", convertToC);
-

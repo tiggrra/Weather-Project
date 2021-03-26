@@ -90,7 +90,10 @@ function convertToF(event) {
     currentCTemp.innerHTML = Math.round(fTemp);
     currentWind.innerHTML = Math.round(fWind);
     currentWindTag.innerHTML = "mph";
-}
+
+    cConversion.classList.remove("active");
+    fConversion.classList.add("active");
+    }
 
 function convertToC(event) {
     event.preventDefault();
@@ -100,6 +103,9 @@ function convertToC(event) {
     currentCTemp.innerHTML = celsiusTemp;
     currentWind.innerHTML = celsiusWind;
     currentWindTag.innerHTML = "km/h";
+
+    fConversion.classList.remove("active");
+    cConversion.classList.add("active");
 }
 
 let celsiusTemp = null;

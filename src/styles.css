@@ -74,26 +74,30 @@ hr {
   line-height: 1;
 }
 
-.celsius-tag,
-.fahrenheit-tag,
-.divider {
+.measure-unit {
   font-size: 18px;
   vertical-align: top;
 }
 
-.celsius-tag a {
-  color: #303232;
-  text-decoration: none;
-  cursor: default;
-}
-
-.fahrenheit-tag a {
+.measure-unit a {
   color: #303232;
   text-decoration: none;
 }
 
-.fahrenheit-tag a:hover {
+.measure-unit a:hover {
   color: #919ca4;
+  cursor: pointer;
+}
+
+a.active {
+  color: #303232;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.active:hover {
+  color: #303232;
+  cursor: default;
 }
 
 #weatherIcon {

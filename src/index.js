@@ -12,7 +12,7 @@ h2.innerHTML = (`${weekday}, ${hour}:${minute}`);
 
 // default location upon page load
 
-let city = "Dehli";
+let city = "Vienna";
 let apiKey = "01bc9da346c1591ec92736f4f11269b6";
 let apiEndpointCurrent = "https://api.openweathermap.org/data/2.5/weather";
 let units = "metric";
@@ -24,42 +24,6 @@ axios.get(apiUrlCurrent).then(displayWeather);
 function displayWeather(response) {
     celsiusTemp = Math.round(response.data.main.temp);
     celsiusWind = Math.round(response.data.wind.speed*3.6);
-
-    // local time calculation
-    let localTime = document.querySelector("#local-time");
-    let currentTimeZone = (now.getTimezoneOffset());
-    let localTimeZone = response.data.timezone/60;
-    let localHour = parseInt(hour)*60 + currentTimeZone + localTimeZone;
-    console.log(localHour/60);
-    let wholeHourCheck = localHour/60 - Math.floor(localHour/60);
-    console.log(wholeHourCheck);
-    let localMinutes = now.getMinutes() + (localHour/60 - Math.floor(localHour/60))*60;
-    console.log(localMinutes);
-
-        if (wholeHourCheck === 0) {  
-            if(localHour/60>=24) {
-            let localHourBack = parseInt(hour) + (currentTimeZone + localTimeZone)/60 - 24;
-            localTime.innerHTML = (`${localHourBack}:${minute}`);
-                } else if (localHour/60<0) {
-                let localHourForward = parseInt(hour) + (currentTimeZone + localTimeZone)/60 + 24;
-                localTime.innerHTML = (`${localHourForward}:${minute}`);
-                    } else {
-                    localTime.innerHTML = (`${localHour/60}:${minute}`);
-                }
-            } else {
-                if (localMinutes>59) {
-                let localMinutesForward = localMinutes-60;
-                console.log(localMinutesForward);
-                let localHourForward = Math.floor(localHour/60)-23;
-                localTime.innerHTML = (`${localHourForward}:${localMinutesForward}`);
-                    } else if (localMinutes<0) {
-                    let localMinutesBack = localMinutes+60;
-                    let localHourBack = Math.floor(localHour/60)+23;
-                    localTime.innerHTML = (`${localHourBack}:${localMinutesBack}`);
-                        } else {
-                        localTime.innerHTML = (`${Math.floor(localHour/60)}:${localMinutes}`);
-                            }
-            }
 
     // main data
     let currentCity = response.data.name;
